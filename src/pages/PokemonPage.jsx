@@ -13,10 +13,11 @@ export default function PokemonPage() {
       .then((data) => {
         const urls = data.results.map((poke) => poke.url);
 
-        Promise.all(urls.map((url) => fetch(url).then((res) => res.json())))
-          .then((details) => {
-            setPokemons((prev) => [...prev, ...details]);
-          });
+        Promise.all(
+          urls.map((url) => fetch(url).then((res) => res.json()))
+        ).then((details) => {
+          setPokemons((prev) => [...prev, ...details]);
+        });
       });
   }, [offset]);
 
@@ -26,22 +27,24 @@ export default function PokemonPage() {
 
   return (
     <div className="container">
-  <h2 className="text-center my-4">Lista de Pokémon</h2>
+      <h2 className="text-center my-4">Lista de Pokémon</h2>
 
-  <div className="row justify-content-center">
-    {pokemons.map((poke, index) => (
-      <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex" key={index}>
-        <ProjectCard pokesData={poke} />
+      <div className="row justify-content-center">
+        {pokemons.map((poke, index) => (
+          <div
+            className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex"
+            key={index}
+          >
+            <ProjectCard pokesData={poke} />
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
 
-  <div className="text-center my-4">
-    <button onClick={cargarMas} className="btn btn-primary">
-      Cargar 4 más
-    </button>
-  </div>
-</div>
+      <div className="text-center my-4">
+        <button onClick={cargarMas} className="btn btn-primary">
+          Cargar 20 más
+        </button>
+      </div>
+    </div>
   );
-
 }

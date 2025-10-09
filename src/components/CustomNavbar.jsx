@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from "react-router-dom";
+
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function CustomNavbar() {
@@ -17,9 +19,9 @@ function CustomNavbar() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
+            <Nav.Link to="/">Inicio</Nav.Link>
             <Nav.Link href="#action2">Pokedex</Nav.Link>
-            <Nav.Link href='#action3'>pokesi</Nav.Link>
+            <Nav.Link href='#action3'></Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
