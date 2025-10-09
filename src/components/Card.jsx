@@ -8,7 +8,8 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 
-export default function ProjectCard() {
+export default function ProjectCard({ pokesData }) {
+  if (!pokesData || !pokesData.sprites) return null; // Evita el error
   //   const playSound = () => {
   //     const audio = new Audio('/sounds/hover.mp3');
   //     audio.play();
@@ -18,17 +19,19 @@ export default function ProjectCard() {
     <div className="w-50 mx-auto">
       <MDBCard className="card-hover">
         <MDBCardImage
-          src="https://mdbootstrap.com/img/new/standard/nature/184.webp"
+          src={pokesData.sprites.other.dream_world.front_default}
           position="top"
-          alt="..."
+          alt={pokesData.name}
+          style={{ height: "150px", objectFit: "contain" }}
         />
         <MDBCardBody>
-          <MDBCardTitle>Card title</MDBCardTitle>
+          <MDBCardTitle>
+            {pokesData.name} #{pokesData.id}
+          </MDBCardTitle>
           <MDBCardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Este es un Pokémon llamado {pokesData.name}.
           </MDBCardText>
-          <MDBBtn href="#">Button</MDBBtn>
+          <MDBBtn href="#">Ver más</MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </div>
