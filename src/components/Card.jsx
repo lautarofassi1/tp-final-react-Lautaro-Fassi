@@ -1,4 +1,4 @@
-import "./Card.css";
+import "../styles/PokemonDetail.css";
 import {
   MDBCard,
   MDBCardBody,
