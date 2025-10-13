@@ -6,7 +6,7 @@ import PokemonDetail from "./pages/PokemonDetail";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -14,7 +14,7 @@ function App() {
           <Route path="pokemons/:id" element={<PokemonDetail />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

@@ -26,7 +26,8 @@ export default function PokemonPage() {
   };
 
   return (
-    <div className="container">
+    
+    <div className="container text-center">
       <h2 className="text-center my-4">Lista de Pokémon</h2>
 
       <div className="row justify-content-center">

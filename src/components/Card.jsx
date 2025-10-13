@@ -7,13 +7,16 @@ import {
   MDBCardImage,
   MDBBtn,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectCard({ pokesData }) {
-  if (!pokesData || !pokesData.sprites) return null; // Evita el error
-  //   const playSound = () => {
-  //     const audio = new Audio('/sounds/hover.mp3');
-  //     audio.play();
-  //   };
+  const navigate = useNavigate();
+
+  if (!pokesData || !pokesData.sprites) return null;
+
+  const verDetalles = () => {
+    navigate(`/pokemons/${pokesData.id}`);
+  };
 
   return (
     <div className="w-50 mx-auto">
@@ -31,7 +34,7 @@ export default function ProjectCard({ pokesData }) {
           <MDBCardText>
             Este es un Pokémon llamado {pokesData.name}.
           </MDBCardText>
-          <MDBBtn href="#">Ver más</MDBBtn>
+          <MDBBtn onClick={verDetalles}>Ver más</MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </div>

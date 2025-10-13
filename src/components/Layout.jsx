@@ -5,7 +5,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <main className="container mt-4">
+      <main className="container mt-5">
         <Outlet />
       </main>
     </>
