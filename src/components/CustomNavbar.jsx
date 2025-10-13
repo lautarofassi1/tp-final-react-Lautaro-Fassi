@@ -1,17 +1,40 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 
-import NavDropdown from 'react-bootstrap/NavDropdown';
-
 function CustomNavbar() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const search = (e) => {
+    e.preventDefault();
+    const term = searchTerm.trim().toLowerCase();
+
+    if (!term) return;
+
+    // Si es número, es su ID
+    if (!isNaN(term)) {
+      navigate(`/pokemons/${term}`);
+    } else {
+      // Si es texto, es el nombre
+      navigate(`/pokemons/${term}`);
+    }
+
+    setSearchTerm("");
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary fixed-top center shadow">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">PokeAppi</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          PokeAppi
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -19,18 +42,30 @@ function CustomNavbar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link as={Link} to="/">Inicio</Nav.Link>
-            <Nav.Link as={Link} to="/pokemons">Pokedex</Nav.Link>
-            <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
+            <Nav.Link as={Link} to="/">
+              Inicio
+            </Nav.Link>
+            <Nav.Link as={Link} to="/pokemons">
+              Pokedex
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contacto">
+              Contacto
+            </Nav.Link>
           </Nav>
-          <Form className="d-flex">
+
+          <Form className="d-flex" onSubmit={search}>
             <Form.Control
               type="search"
-              placeholder="Buscar Pokémon"
+              placeholder="Buscar por nombre o ID  "
               className="me-2"
+              style={{ minWidth: "220px" }}
               aria-label="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button variant="outline-success">Buscar</Button>
+            <Button variant="outline-success" type="submit">
+              Buscar
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
@@ -39,4 +74,3 @@ function CustomNavbar() {
 }
 
 export default CustomNavbar;
-
