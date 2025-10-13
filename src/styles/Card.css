@@ -1,3 +1,6 @@
+.card {
+  background-color: transparent !important;
+}
 .card-wrapper {
   width: 240px;
   margin: 0.5rem;
@@ -8,8 +11,41 @@
   border-radius: 12px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(6px); 
+  color: white !important;
+  border: none !important;
+
 }
 
 .custom-card:hover {
   transform: scale(1.03);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-card {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0; 
+  transform: translateY(10px); 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  color: white;
+  border: none !important;
+}
+
+.custom-card:hover {
+  transform: translateY(0) scale(1.03); 
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
 }
