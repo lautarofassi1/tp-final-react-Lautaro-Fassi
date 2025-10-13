@@ -17,73 +17,73 @@ export default function PokemonDetail() {
   if (!pokemon) {
     return <p className="text-center mt-5">Cargando Pokémon...</p>;
   }
+return (
+  <div className="d-flex justify-content-center align-items-center min-vh-100 px-4">
+    <div className="pokemon-detail-card pokemon-card-container">
+      {/* Imagen + nombre */}
+      <div className="pokemon-image-section">
+        <img
+          src={pokemon.sprites.other.dream_world.front_default}
+          alt={pokemon.name}
+          className="pokemon-image"
+        />
+        <h3 className="text-capitalize mt-3 text-center">
+          {pokemon.name} <span className="text-muted">#{pokemon.id}</span>
+        </h3>
+      </div>
 
-  return (
-    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light px-4">
-      <div className="pokemon-card-container">
-        {/* Imagen + nombre */}
-        <div className="pokemon-image-section">
-          <img
-            src={pokemon.sprites.other.dream_world.front_default}
-            alt={pokemon.name}
-            className="pokemon-image"
-          />
-          <h3 className="text-capitalize mt-3 text-center">
-            {pokemon.name} <span className="text-muted">#{pokemon.id}</span>
-          </h3>
+      {/* Info técnica */}
+      <div className="pokemon-info-section">
+        <div className="mb-3">
+          <h5>Información Básica</h5>
+          <p><strong>Altura:</strong> {pokemon.height / 10} m</p>
+          <p><strong>Peso:</strong> {pokemon.weight / 10} kg</p>
+          <p><strong>Experiencia Base:</strong> {pokemon.base_experience}</p>
         </div>
 
-        {/* Info técnica */}
-        <div className="pokemon-info-section">
-          <div className="mb-3">
-            <h5>Información Básica</h5>
-            <p><strong>Altura:</strong> {pokemon.height / 10} m</p>
-            <p><strong>Peso:</strong> {pokemon.weight / 10} kg</p>
-            <p><strong>Experiencia Base:</strong> {pokemon.base_experience}</p>
-          </div>
+        <div className="mb-3">
+          <h5>Tipos</h5>
+          {pokemon.types.map((tipo) => (
+            <span key={tipo.type.name} className="badge bg-success me-2">
+              {tipo.type.name}
+            </span>
+          ))}
+        </div>
 
-          <div className="mb-3">
-            <h5>Tipos</h5>
-            {pokemon.types.map((tipo) => (
-              <span key={tipo.type.name} className="badge bg-success me-2">
-                {tipo.type.name}
-              </span>
-            ))}
-          </div>
+        <div className="mb-3">
+          <h5>Habilidades</h5>
+          {pokemon.abilities.map((hab) => (
+            <span key={hab.ability.name} className="badge bg-warning text-dark me-2">
+              {hab.ability.name}
+            </span>
+          ))}
+        </div>
 
-          <div className="mb-3">
-            <h5>Habilidades</h5>
-            {pokemon.abilities.map((hab) => (
-              <span key={hab.ability.name} className="badge bg-warning text-dark me-2">
-                {hab.ability.name}
-              </span>
-            ))}
-          </div>
+        <div className="mb-3">
+          <h5>Estadísticas</h5>
+          {pokemon.stats.map((stat) => (
+            <div key={stat.stat.name} className="mb-2">
+              <label><strong>{stat.stat.name}</strong></label>
+              <ProgressBar
+                now={stat.base_stat}
+                label={`${stat.base_stat}`}
+                variant={getColor(stat.stat.name)}
+                max={150}
+              />
+            </div>
+          ))}
+        </div>
 
-          <div className="mb-3">
-            <h5>Estadísticas</h5>
-            {pokemon.stats.map((stat) => (
-              <div key={stat.stat.name} className="mb-2">
-                <label><strong>{stat.stat.name}</strong></label>
-                <ProgressBar
-                  now={stat.base_stat}
-                  label={`${stat.base_stat}`}
-                  variant={getColor(stat.stat.name)}
-                  max={150}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="text-end mt-4">
-            <button className="btn btn-secondary" onClick={() => navigate(-1)}>
-              Volver
-            </button>
-          </div>
+        <div className="text-end mt-4">
+          <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+            Volver
+          </button>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
+ 
 }
 
 function getColor(statName) {

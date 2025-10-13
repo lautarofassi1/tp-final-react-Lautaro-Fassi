@@ -7,6 +7,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
+import '../styles/CustomNavbar.css';
+
 
 function CustomNavbar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,7 +32,7 @@ function CustomNavbar() {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary fixed-top center shadow">
+    <Navbar expand="lg" className="custom-navbar  fixed-top center shadow">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           PokeAppi
