@@ -1,14 +1,15 @@
-.card-hover {
-  transition: transform 0.3s ease;
+.card-wrapper {
+  width: 240px;
+  margin: 0.5rem;
 }
 
-.card-hover:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.custom-card {
+  aspect-ratio: 1 / 1.2;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
-.card-hover {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+.custom-card:hover {
+  transform: scale(1.03);
 }
