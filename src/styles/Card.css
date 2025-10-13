@@ -21,6 +21,7 @@
 .custom-card:hover {
   transform: scale(1.03);
 }
+/* GRACIAS CHAT POR AYUDARME CON EL FADE-IN */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -48,4 +49,7 @@
 .custom-card:hover {
   transform: translateY(0) scale(1.03); 
   box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+}
+.card-title{
+  color: rgb(22, 21, 21) !important;
 }
