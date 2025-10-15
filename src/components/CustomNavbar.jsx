@@ -50,8 +50,8 @@ function CustomNavbar() {
             <Nav.Link as={Link} to="/pokemons">
               Pokedex
             </Nav.Link>
-            <Nav.Link as={Link} to="/contacto">
-              Contacto
+            <Nav.Link as={Link} to="/favoritos">
+              Favoritos
             </Nav.Link>
           </Nav>
 

@@ -9,7 +9,7 @@ import {
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 
-export default function ProjectCard({ pokesData }) {
+export default function ProjectCard({ pokesData, favorite, noFavorite }) {
   const navigate = useNavigate();
 
   if (!pokesData || !pokesData.sprites) return null;
@@ -33,6 +33,14 @@ export default function ProjectCard({ pokesData }) {
           </MDBCardTitle>
           
           <MDBBtn onClick={verDetalles}>Ver más</MDBBtn>
+          <MDBBtn
+              color={favorite ? "danger" : "light"}
+              onClick={() => noFavorite(pokesData)}
+            >
+              {favorite ? "❤️" : "🤍"}
+            </MDBBtn>
+
+          
         </MDBCardBody>
       </MDBCard>
     </div>

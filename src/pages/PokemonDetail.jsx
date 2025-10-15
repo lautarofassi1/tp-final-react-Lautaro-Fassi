@@ -7,83 +7,112 @@ export default function PokemonDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [pokemon, setPokemon] = useState(null);
+  const [favorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((res) => res.json())
-      .then((data) => setPokemon(data));
+      .then((data) => {
+        setPokemon(data);
+
+        const favoritosGuardados = JSON.parse(localStorage.getItem("favoritos")) || [];
+        const yaEsFavorito = favoritosGuardados.some((fav) => fav.id === data.id);
+        setIsFavorite(yaEsFavorito);
+      });
   }, [id]);
+
+  const noFavorito = () => {
+    const favoritosGuardados = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    if (favorite) {
+      const nuevosFavoritos = favoritosGuardados.filter((fav) => fav.id !== pokemon.id);
+      localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+      setIsFavorite(false);
+    } else {
+      favoritosGuardados.push({
+        id: pokemon.id,
+        name: pokemon.name,
+        sprite: pokemon.sprites.other.dream_world.front_default,
+      });
+      localStorage.setItem("favoritos", JSON.stringify(favoritosGuardados));
+      setIsFavorite(true);
+    }
+  };
 
   if (!pokemon) {
     return <p className="text-center mt-5">Cargando Pokémon...</p>;
   }
-return (
-  <div className="d-flex justify-content-center align-items-center min-vh-100 px-4">
-    <div className="pokemon-detail-card pokemon-card-container">
-      {/* Imagen + nombre */}
-      <div className="pokemon-image-section">
-        <img
-          src={pokemon.sprites.other.dream_world.front_default}
-          alt={pokemon.name}
-          className="pokemon-image"
-        />
-        <h3 className="text-capitalize mt-3 text-center">
-          {pokemon.name} <span className="text-muted">#{pokemon.id}</span>
-        </h3>
-      </div>
 
-      {/* Info técnica */}
-      <div className="pokemon-info-section">
-        <div className="mb-3">
-          <h5>Información Básica</h5>
-          <p><strong>Altura:</strong> {pokemon.height / 10} m</p>
-          <p><strong>Peso:</strong> {pokemon.weight / 10} kg</p>
-          <p><strong>Experiencia Base:</strong> {pokemon.base_experience}</p>
+  return (
+    <div className="d-flex justify-content-center align-items-center min-vh-100 px-4">
+      <div className="pokemon-detail-card pokemon-card-container">
+        {/* Imagen + nombre */}
+        <div className="pokemon-image-section">
+          <img
+            src={pokemon.sprites.other.dream_world.front_default}
+            alt={pokemon.name}
+            className="pokemon-image"
+          />
+          <h3 className="text-capitalize mt-3 text-center">
+            {pokemon.name} <span className="text-muted">#{pokemon.id}</span>
+          </h3>
         </div>
 
-        <div className="mb-3">
-          <h5>Tipos</h5>
-          {pokemon.types.map((tipo) => (
-            <span key={tipo.type.name} className="badge bg-success me-2">
-              {tipo.type.name}
-            </span>
-          ))}
-        </div>
+        {/* Info técnica */}
+        <div className="pokemon-info-section">
+          <div className="mb-3">
+            <h5>Información Básica</h5>
+            <p><strong>Altura:</strong> {pokemon.height / 10} m</p>
+            <p><strong>Peso:</strong> {pokemon.weight / 10} kg</p>
+            <p><strong>Experiencia Base:</strong> {pokemon.base_experience}</p>
+          </div>
 
-        <div className="mb-3">
-          <h5>Habilidades</h5>
-          {pokemon.abilities.map((hab) => (
-            <span key={hab.ability.name} className="badge bg-warning text-dark me-2">
-              {hab.ability.name}
-            </span>
-          ))}
-        </div>
+          <div className="mb-3">
+            <h5>Tipos</h5>
+            {pokemon.types.map((tipo) => (
+              <span key={tipo.type.name} className="badge bg-success me-2">
+                {tipo.type.name}
+              </span>
+            ))}
+          </div>
 
-        <div className="mb-3">
-          <h5>Estadísticas</h5>
-          {pokemon.stats.map((stat) => (
-            <div key={stat.stat.name} className="mb-2">
-              <label><strong>{stat.stat.name}</strong></label>
-              <ProgressBar
-                now={stat.base_stat}
-                label={`${stat.base_stat}`}
-                variant={getColor(stat.stat.name)}
-                max={150}
-              />
-            </div>
-          ))}
-        </div>
+          <div className="mb-3">
+            <h5>Habilidades</h5>
+            {pokemon.abilities.map((hab) => (
+              <span key={hab.ability.name} className="badge bg-warning text-dark me-2">
+                {hab.ability.name}
+              </span>
+            ))}
+          </div>
 
-        <div className="text-end mt-4">
-          <button className="btn btn-secondary" onClick={() => navigate(-1)}>
-            Volver
-          </button>
+          <div className="mb-3">
+            <h5>Estadísticas</h5>
+            {pokemon.stats.map((stat) => (
+              <div key={stat.stat.name} className="mb-2">
+                <label><strong>{stat.stat.name}</strong></label>
+                <ProgressBar
+                  now={stat.base_stat}
+                  label={`${stat.base_stat}`}
+                  variant={getColor(stat.stat.name)}
+                  max={150}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="text-end mt-4 d-flex justify-content-between">
+            <button className="btn btn-outline-danger" onClick={noFavorito}>
+              {favorite ? "❤️ Quitar de favoritos" : "🤍 Agregar a favoritos"}
+            </button>
+
+            <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+              Volver
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
- 
+  );
 }
 
 function getColor(statName) {
