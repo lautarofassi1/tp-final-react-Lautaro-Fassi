@@ -1,0 +1,52 @@
+.home-page {
+  min-height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 60px;
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #212529;
+}
+
+.info-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.home-image {
+  width: 120px;
+  transition: transform 0.3s ease;
+}
+
+.home-image:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.tech-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.tech-logos {
+  gap: 20px;
+}
+
+.tech-icon {
+  width: 60px;
+  height: auto;
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.tech-icon:hover {
+  transform: scale(1.1);
+}
