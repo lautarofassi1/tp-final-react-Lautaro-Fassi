@@ -35,7 +35,7 @@ function CustomNavbar() {
     <Navbar expand="lg" className="custom-navbar  fixed-top center shadow">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
-          PokeAppi
+          PokeApp
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
