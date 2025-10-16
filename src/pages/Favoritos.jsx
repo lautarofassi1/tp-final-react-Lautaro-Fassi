@@ -11,16 +11,14 @@ export default function Favoritos() {
 
     // Filtrar solo los que tienen datos completos
     const filtrados = guardados.filter(
-      (poke) =>
-        poke.id &&
-        poke.name &&
-        poke.sprite 
+      (poke) => poke.id && poke.name && poke.sprite
     );
 
     setFavoritos(filtrados);
   }, []);
 
   return (
+    <div className="page-content">
     <Container className="mt-5">
       <h2 className="text-center mb-4">Tus Pokémon Favoritos</h2>
 
@@ -28,7 +26,8 @@ export default function Favoritos() {
         <div className="text-center mt-5">
           <h4>No hay favoritos aún</h4>
           <p>
-            Usá el buscador o explorá con el botón Pokédex para descubrir tus Pokémon favoritos.
+            Usá el buscador o explorá con el botón Pokédex para descubrir tus
+            Pokémon favoritos.
           </p>
           <Button as={Link} to="/pokemons" variant="primary">
             Ir a la Pokédex
@@ -56,5 +55,6 @@ export default function Favoritos() {
         </Row>
       )}
     </Container>
+    </div>
   );
 }
