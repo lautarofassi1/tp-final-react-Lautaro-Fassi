@@ -53,3 +53,50 @@
 .card-title{
   color: rgb(22, 21, 21) !important;
 }
+
+  .ver-mas-btn {
+  min-width: 100px;
+  max-width: 100px;
+   width: 100px !important;
+
+  height: 40px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ver-mas-btn {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ver-mas-btn:hover {
+  transform: scale(1.05);
+}
+
+
+.favorite-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background-color: transparent !important;
+}
+.favorite-btn {
+  transition: transform 0.2s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+}

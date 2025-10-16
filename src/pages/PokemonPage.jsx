@@ -16,10 +16,18 @@ export default function PokemonPage() {
         Promise.all(
           urls.map((url) => fetch(url).then((res) => res.json()))
         ).then((details) => {
-          setPokemons((prev) => [...prev, ...details]);
+          // Evitar duplicados por ID
+          setPokemons((prev) => {
+            const nuevos = details.filter(
+              (poke) => !prev.some((p) => p.id === poke.id)
+            );
+            return [...prev, ...nuevos];
+          });
         });
       });
   }, [offset]);
+
+
 
   const cargarMas = () => {
     setOffset(offset + 20);

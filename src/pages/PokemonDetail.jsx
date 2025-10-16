@@ -2,42 +2,26 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
 import "../styles/PokemonDetail.css";
+import useFavoritos from "../hooks/useFavoritos.js";
+
 
 export default function PokemonDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [pokemon, setPokemon] = useState(null);
-  const [favorite, setIsFavorite] = useState(false);
+ const { isFavorite, toggleFavorite } = useFavoritos(id, pokemon);
+
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((res) => res.json())
-      .then((data) => {
-        setPokemon(data);
+      .then((data) => setPokemon(data));
 
-        const favoritosGuardados = JSON.parse(localStorage.getItem("favoritos")) || [];
-        const yaEsFavorito = favoritosGuardados.some((fav) => fav.id === data.id);
-        setIsFavorite(yaEsFavorito);
-      });
+        
   }, [id]);
 
-  const noFavorito = () => {
-    const favoritosGuardados = JSON.parse(localStorage.getItem("favoritos")) || [];
 
-    if (favorite) {
-      const nuevosFavoritos = favoritosGuardados.filter((fav) => fav.id !== pokemon.id);
-      localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
-      setIsFavorite(false);
-    } else {
-      favoritosGuardados.push({
-        id: pokemon.id,
-        name: pokemon.name,
-        sprite: pokemon.sprites.other.dream_world.front_default,
-      });
-      localStorage.setItem("favoritos", JSON.stringify(favoritosGuardados));
-      setIsFavorite(true);
-    }
-  };
+
 
   if (!pokemon) {
     return <p className="text-center mt-5">Cargando Pokémon...</p>;
@@ -101,8 +85,8 @@ export default function PokemonDetail() {
           </div>
 
           <div className="text-end mt-4 d-flex justify-content-between">
-            <button className="btn btn-outline-danger" onClick={noFavorito}>
-              {favorite ? "❤️ Quitar de favoritos" : "🤍 Agregar a favoritos"}
+            <button className="btn btn-outline-danger" onClick={toggleFavorite}>
+              {isFavorite ? "❤️ Quitar de favoritos" : "🤍 Agregar a favoritos"}
             </button>
 
             <button className="btn btn-secondary" onClick={() => navigate(-1)}>

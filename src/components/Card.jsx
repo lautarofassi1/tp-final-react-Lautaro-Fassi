@@ -8,8 +8,10 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
+import useFavoritos from "../hooks/useFavoritos";
 
-export default function ProjectCard({ pokesData, favorite, noFavorite }) {
+export default function ProjectCard({ pokesData }) {
+  const { isFavorite, toggleFavorite } = useFavoritos(pokesData.id, pokesData);
   const navigate = useNavigate();
 
   if (!pokesData || !pokesData.sprites) return null;
@@ -31,16 +33,14 @@ export default function ProjectCard({ pokesData, favorite, noFavorite }) {
           <MDBCardTitle>
             {pokesData.name} #{pokesData.id}
           </MDBCardTitle>
-          
-          <MDBBtn onClick={verDetalles}>Ver más</MDBBtn>
-          <MDBBtn
-              color={favorite ? "danger" : "light"}
-              onClick={() => noFavorite(pokesData)}
-            >
-              {favorite ? "❤️" : "🤍"}
-            </MDBBtn>
 
-          
+          <MDBBtn className="ver-mas-btn" onClick={verDetalles}>Ver más</MDBBtn>
+          <MDBBtn className="favorite-btn"
+            onClick={() => toggleFavorite()}
+            color={isFavorite ? "danger" : "light"}
+          >
+            {isFavorite ? "❤️" : "🤍"}
+          </MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </div>
