@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename='tp-final-react-Lautaro-Fassi'>
+    <BrowserRouter basename='/tp-final-react-Lautaro-Fassi'>
       <App />
     </BrowserRouter>
   </StrictMode>

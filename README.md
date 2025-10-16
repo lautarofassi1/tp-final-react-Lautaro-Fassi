@@ -84,3 +84,10 @@ Si querés compartir feedback, ideas o simplemente charlar sobre desarrollo web:
 - 🔗 [LinkedIn](https://www.linkedin.com/in/lautarofassi)
 
 ---
+
+## 🚀 Deploy en GitHub Pages
+
+Este proyecto está publicado en GitHub Pages y accesible en:
+
+🔗 [PokéExplorer en producción](https://lautarofassi1.github.io/tp-final-react-Lautaro-Fassi/)
+

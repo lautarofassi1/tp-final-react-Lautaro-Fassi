@@ -107,7 +107,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
             >
               <img
-                src="/assets/pokeapi-logo.png"
+                src="tp-final-react-Lautaro-Fassi\public\assets\pokeapi-logo.png"
                 alt="PokéAPI"
                 className="tech-icon"
               />
