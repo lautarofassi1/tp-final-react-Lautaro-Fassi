@@ -34,7 +34,7 @@ export default function Favoritos() {
           </Button>
         </div>
       ) : (
-        <Row className="justify-content-center">
+        <Row className="justify-content-around">
           {favoritos.map((poke) => (
             <Col key={poke.id} xs={12} sm={6} md={4} lg={3}>
               <ProjectCard

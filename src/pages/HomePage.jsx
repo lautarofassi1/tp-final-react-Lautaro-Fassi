@@ -107,7 +107,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
             >
               <img
-                src="tp-final-react-Lautaro-Fassi\public\assets\pokeapi-logo.png"
+                 src={`${import.meta.env.BASE_URL}assets/pokeapi-logo.png`} //si no la importaba asi en github page no se ve
                 alt="PokéAPI"
                 className="tech-icon"
               />
